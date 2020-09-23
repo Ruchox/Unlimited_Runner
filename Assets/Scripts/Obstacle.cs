@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * Created by: Ruel Coy
+ *
+ * Purpose: Handles Obstacle behavior 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +12,7 @@ using UnityEngine.UI;
 public class Obstacle : MonoBehaviour
 {
     public Text scoreText;
-    private int totalScore = 0;
+    private int _totalScore = 0;
     public GameObject player;
     public float speed;
 
@@ -14,10 +20,6 @@ public class Obstacle : MonoBehaviour
     {
         player = GameObject.Find("Player");
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
-    }
-    private void Update()
-    {
-        
     }
     void FixedUpdate()
     {
@@ -36,12 +38,13 @@ public class Obstacle : MonoBehaviour
         if (collision.gameObject.CompareTag("Score"))
         {
             
-            totalScore++;
-            scoreText.text = totalScore.ToString();
+            _totalScore++;
+            Debug.Log(_totalScore);
+            scoreText.text = _totalScore.ToString();
         }
     }
   
-    void DestroyObstacle()
+    private void DestroyObstacle()
     {
         Destroy(this.gameObject);
     }
